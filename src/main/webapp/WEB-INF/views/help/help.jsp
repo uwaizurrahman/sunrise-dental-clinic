@@ -4,326 +4,716 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>Help | Sunrise Dental Clinic</title>
+  <title>Help & Support | Sunrise Dental Clinic</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          boxShadow: {
+            soft: '0 12px 35px rgba(15, 23, 42, 0.07)'
+          }
+        }
+      }
+    }
+  </script>
+
 </head>
 
-<body class="bg-slate-100 min-h-screen">
 
-<header class="bg-white shadow-sm">
+<body class="bg-slate-50 text-slate-800 min-h-screen">
 
-  <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-
-    <div>
-      <h1 class="text-xl font-bold text-slate-800">
-        Sunrise Dental Clinic
-      </h1>
-
-      <p class="text-sm text-slate-500">
-        Help & User Instructions
-      </p>
-    </div>
-
-    <a href="<%= request.getContextPath() %>/dashboard"
-       class="text-blue-600 hover:text-blue-800 font-medium">
-      Dashboard
-    </a>
-
-  </div>
-
-</header>
+<div class="min-h-screen lg:flex">
 
 
-<main class="max-w-5xl mx-auto p-6">
+  <!-- Sidebar -->
 
-  <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+  <aside class="hidden lg:flex lg:w-72 lg:flex-col bg-slate-950 text-white fixed inset-y-0 left-0">
 
-    <h2 class="text-2xl font-bold text-slate-800">
-      System Help
-    </h2>
+    <div class="px-7 py-7 border-b border-slate-800">
 
-    <p class="text-slate-500 mt-2">
-      Follow the instructions below to use the Sunrise Dental Clinic
-      appointment and patient management system.
-    </p>
+      <div class="flex items-center gap-3">
 
-  </div>
+        <div class="w-11 h-11 rounded-xl bg-cyan-500 flex items-center justify-center font-bold text-lg">
+          S
+        </div>
 
+        <div>
 
-  <div class="space-y-6">
+          <h1 class="font-bold text-lg">
+            Sunrise Dental
+          </h1>
 
+          <p class="text-xs text-slate-400 mt-1">
+            Clinic Management
+          </p>
 
-    <!-- Login -->
-
-    <section class="bg-white rounded-xl shadow-sm p-6">
-
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        1. Login to the System
-      </h3>
-
-      <ol class="list-decimal ml-6 space-y-2 text-slate-700">
-
-        <li>Open the Sunrise Dental Clinic application.</li>
-
-        <li>Enter your authorized username.</li>
-
-        <li>Enter your password.</li>
-
-        <li>Click the Login button.</li>
-
-        <li>
-          If the credentials are correct, the dashboard will be displayed.
-        </li>
-
-      </ol>
-
-    </section>
-
-
-    <!-- Register appointment -->
-
-    <section class="bg-white rounded-xl shadow-sm p-6">
-
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        2. Register a New Appointment
-      </h3>
-
-      <ol class="list-decimal ml-6 space-y-2 text-slate-700">
-
-        <li>
-          From the dashboard, select
-          <strong>Register New Appointment</strong>.
-        </li>
-
-        <li>Enter the patient's name.</li>
-
-        <li>Enter the patient's contact number.</li>
-
-        <li>Enter the patient's address.</li>
-
-        <li>Select the dentist.</li>
-
-        <li>Select the treatment type.</li>
-
-        <li>Select the appointment date.</li>
-
-        <li>Select the appointment time.</li>
-
-        <li>Click <strong>Register Appointment</strong>.</li>
-
-        <li>
-          The system will display a unique appointment number
-          after successful registration.
-        </li>
-
-      </ol>
-
-      <div class="mt-4 bg-blue-50 text-blue-700 px-4 py-3 rounded-lg">
-
-        The system prevents the same dentist from being booked for
-        the same date and time.
+        </div>
 
       </div>
 
-    </section>
+    </div>
 
 
-    <!-- Search -->
+    <nav class="flex-1 px-4 py-6 space-y-2">
 
-    <section class="bg-white rounded-xl shadow-sm p-6">
+      <a href="<%= request.getContextPath() %>/dashboard"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+        Dashboard
+      </a>
 
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        3. Search for an Appointment
-      </h3>
+      <a href="<%= request.getContextPath() %>/appointments/new"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+        New Appointment
+      </a>
 
-      <ol class="list-decimal ml-6 space-y-2 text-slate-700">
+      <a href="<%= request.getContextPath() %>/appointments/search"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+        Search Appointments
+      </a>
 
-        <li>
-          Select <strong>Search Appointments</strong>
-          from the dashboard.
-        </li>
+      <a href="<%= request.getContextPath() %>/reports"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+        Reports
+      </a>
 
-        <li>
-          Choose one of the available search methods:
-          appointment number, patient name, or contact number.
-        </li>
+      <a href="<%= request.getContextPath() %>/help"
+         class="flex items-center gap-3 bg-cyan-500/10 text-cyan-300 px-4 py-3 rounded-xl font-medium">
+        Help & Support
+      </a>
 
-        <li>Enter the search value.</li>
+    </nav>
 
-        <li>Click <strong>Search</strong>.</li>
 
-        <li>
-          Matching appointment records will be displayed.
-        </li>
+    <div class="p-4 border-t border-slate-800">
 
-        <li>
-          Click <strong>View Details</strong>
-          to see the complete appointment information.
-        </li>
+      <a href="<%= request.getContextPath() %>/logout"
+         class="block text-center bg-slate-900 hover:bg-red-500/20 hover:text-red-300 px-4 py-3 rounded-xl transition">
 
-      </ol>
+        Sign Out
 
-    </section>
+      </a>
 
+    </div>
 
-    <!-- Status -->
+  </aside>
 
-    <section class="bg-white rounded-xl shadow-sm p-6">
 
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        4. Manage Appointment Status
-      </h3>
+  <!-- Main -->
 
-      <p class="text-slate-700 mb-4">
-        Scheduled appointments can be updated using the appointment details page.
-      </p>
+  <div class="flex-1 lg:ml-72">
 
-      <ul class="list-disc ml-6 space-y-2 text-slate-700">
 
-        <li>
-          Use <strong>Mark Completed</strong>
-          when the patient's appointment has been completed.
-        </li>
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200">
 
-        <li>
-          Use <strong>Cancel Appointment</strong>
-          when the appointment is cancelled.
-        </li>
+      <div class="px-5 sm:px-8 py-4 flex items-center justify-between">
 
-        <li>
-          Cancelled appointment time slots become available
-          for future bookings.
-        </li>
+        <div>
 
-      </ul>
+          <p class="text-sm text-slate-500">
+            Staff Guide
+          </p>
 
-    </section>
+          <h2 class="text-xl font-bold text-slate-900">
+            Help & Support
+          </h2>
 
+        </div>
 
-    <!-- Billing -->
 
-    <section class="bg-white rounded-xl shadow-sm p-6">
+        <a href="<%= request.getContextPath() %>/dashboard"
+           class="text-sm font-medium text-slate-600 hover:text-slate-900">
 
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        5. Generate a Patient Bill
-      </h3>
+          Back to Dashboard
 
-      <ol class="list-decimal ml-6 space-y-2 text-slate-700">
+        </a>
 
-        <li>Search for the patient's appointment.</li>
+      </div>
 
-        <li>Open the appointment details page.</li>
+    </header>
 
-        <li>Click <strong>Generate Bill</strong>.</li>
 
-        <li>
-          The system calculates the total using the treatment cost
-          and consultation fee.
-        </li>
+    <main class="p-5 sm:p-8">
 
-        <li>
-          The patient receipt will be displayed.
-        </li>
+      <div class="max-w-6xl mx-auto">
 
-      </ol>
 
-    </section>
+        <!-- Hero -->
 
+        <section class="bg-slate-950 text-white rounded-3xl p-7 sm:p-9 shadow-soft mb-8">
 
-    <!-- Print -->
+          <div class="max-w-3xl">
 
-    <section class="bg-white rounded-xl shadow-sm p-6">
+            <div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-400/20 text-cyan-300 px-3 py-1.5 rounded-full text-sm font-medium">
 
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        6. Print the Patient Receipt
-      </h3>
+              User Guide
 
-      <ol class="list-decimal ml-6 space-y-2 text-slate-700">
+            </div>
 
-        <li>Generate or open the patient's bill.</li>
 
-        <li>Click the <strong>Print Bill</strong> button.</li>
+            <h1 class="text-3xl sm:text-4xl font-bold mt-4">
 
-        <li>
-          Select the required printer from the browser's print window.
-        </li>
+              How to use the clinic system
 
-        <li>Confirm the print operation.</li>
+            </h1>
 
-      </ol>
 
-    </section>
+            <p class="text-slate-400 mt-3 leading-relaxed">
 
+              Follow these step-by-step instructions to manage
+              appointments, patients, billing and reports safely.
 
-    <!-- Logout -->
+            </p>
 
-    <section class="bg-white rounded-xl shadow-sm p-6">
+          </div>
 
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        7. Logout Safely
-      </h3>
+        </section>
 
-      <ol class="list-decimal ml-6 space-y-2 text-slate-700">
 
-        <li>
-          Click the <strong>Logout</strong> button from the dashboard.
-        </li>
+        <!-- Quick Navigation -->
 
-        <li>
-          The current user session will be ended.
-        </li>
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
 
-        <li>
-          The system will return to the login page.
-        </li>
+          <a href="#login"
+             class="bg-white border border-slate-200 rounded-2xl p-4 shadow-soft hover:border-cyan-300 transition">
 
-      </ol>
+            <p class="font-semibold text-slate-900">
+              Login
+            </p>
 
-    </section>
+            <p class="text-xs text-slate-500 mt-1">
+              Secure system access
+            </p>
 
+          </a>
 
-    <!-- Validation -->
 
-    <section class="bg-white rounded-xl shadow-sm p-6">
+          <a href="#appointment"
+             class="bg-white border border-slate-200 rounded-2xl p-4 shadow-soft hover:border-cyan-300 transition">
 
-      <h3 class="text-xl font-semibold text-slate-800 mb-4">
-        Important Validation Rules
-      </h3>
+            <p class="font-semibold text-slate-900">
+              Appointments
+            </p>
 
-      <ul class="list-disc ml-6 space-y-2 text-slate-700">
+            <p class="text-xs text-slate-500 mt-1">
+              Register new bookings
+            </p>
 
-        <li>All required fields must be completed.</li>
+          </a>
 
-        <li>
-          Contact numbers must contain 10 digits.
-        </li>
 
-        <li>
-          Appointment dates cannot be in the past.
-        </li>
+          <a href="#billing"
+             class="bg-white border border-slate-200 rounded-2xl p-4 shadow-soft hover:border-cyan-300 transition">
 
-        <li>
-          A dentist cannot have two active appointments
-          at the same date and time.
-        </li>
+            <p class="font-semibold text-slate-900">
+              Billing
+            </p>
 
-        <li>
-          Only authorized staff can access protected pages.
-        </li>
+            <p class="text-xs text-slate-500 mt-1">
+              Generate receipts
+            </p>
 
-      </ul>
+          </a>
 
-    </section>
+
+          <a href="#reports"
+             class="bg-white border border-slate-200 rounded-2xl p-4 shadow-soft hover:border-cyan-300 transition">
+
+            <p class="font-semibold text-slate-900">
+              Reports
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Review clinic activity
+            </p>
+
+          </a>
+
+        </section>
+
+
+        <div class="space-y-6">
+
+
+          <!-- Login -->
+
+          <section id="login"
+                   class="bg-white border border-slate-200 rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-11 h-11 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+                1
+              </div>
+
+
+              <div class="flex-1">
+
+                <h3 class="text-xl font-semibold text-slate-900">
+                  Login to the System
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1 mb-5">
+                  Only authorized clinic staff can access the system.
+                </p>
+
+
+                <ol class="space-y-3 text-slate-700">
+
+                  <li class="flex gap-3">
+
+                                        <span class="font-semibold text-slate-400">
+                                            01
+                                        </span>
+
+                    Open the Sunrise Dental Clinic application.
+
+                  </li>
+
+                  <li class="flex gap-3">
+
+                                        <span class="font-semibold text-slate-400">
+                                            02
+                                        </span>
+
+                    Enter your authorized username.
+
+                  </li>
+
+                  <li class="flex gap-3">
+
+                                        <span class="font-semibold text-slate-400">
+                                            03
+                                        </span>
+
+                    Enter your password and select
+                    <strong>Sign In to Dashboard</strong>.
+
+                  </li>
+
+                  <li class="flex gap-3">
+
+                                        <span class="font-semibold text-slate-400">
+                                            04
+                                        </span>
+
+                    If your credentials are valid, the dashboard is displayed.
+
+                  </li>
+
+                </ol>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- Appointment -->
+
+          <section id="appointment"
+                   class="bg-white border border-slate-200 rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-11 h-11 flex-shrink-0 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold">
+                2
+              </div>
+
+
+              <div class="flex-1">
+
+                <h3 class="text-xl font-semibold text-slate-900">
+                  Register a New Appointment
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1 mb-5">
+                  Add patient information and schedule a dental visit.
+                </p>
+
+
+                <ol class="space-y-3 text-slate-700">
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">01</span>
+                    Select <strong>New Appointment</strong>.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">02</span>
+                    Enter the patient's name, address and contact number.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">03</span>
+                    Select the dentist and treatment type.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">04</span>
+                    Select the appointment date and time.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">05</span>
+                    Click <strong>Register Appointment</strong>.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">06</span>
+                    Record the unique appointment number displayed by the system.
+                  </li>
+
+                </ol>
+
+
+                <div class="mt-6 bg-cyan-50 border border-cyan-200 text-cyan-800 rounded-2xl p-4">
+
+                  <p class="text-sm">
+                    The system checks dentist availability and prevents
+                    double bookings for the same date and time.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- Search -->
+
+          <section class="bg-white border border-slate-200 rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-11 h-11 flex-shrink-0 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center font-bold">
+                3
+              </div>
+
+
+              <div class="flex-1">
+
+                <h3 class="text-xl font-semibold text-slate-900">
+                  Search & View Appointment Details
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1 mb-5">
+                  Locate patient appointments quickly.
+                </p>
+
+
+                <ol class="space-y-3 text-slate-700">
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">01</span>
+                    Select <strong>Search Appointments</strong>.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">02</span>
+                    Choose appointment number, patient name, or contact number.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">03</span>
+                    Enter the search value and click <strong>Search</strong>.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">04</span>
+                    Select <strong>View Details</strong> beside the required appointment.
+                  </li>
+
+                </ol>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- Status -->
+
+          <section class="bg-white border border-slate-200 rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-11 h-11 flex-shrink-0 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                4
+              </div>
+
+
+              <div class="flex-1">
+
+                <h3 class="text-xl font-semibold text-slate-900">
+                  Manage Appointment Status
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1 mb-5">
+                  Update an appointment after patient activity.
+                </p>
+
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                  <div class="border border-slate-200 rounded-2xl p-5">
+
+                    <p class="font-semibold text-emerald-700">
+                      Mark Completed
+                    </p>
+
+                    <p class="text-sm text-slate-500 mt-2">
+                      Use this when the patient's dental appointment
+                      has been successfully completed.
+                    </p>
+
+                  </div>
+
+
+                  <div class="border border-slate-200 rounded-2xl p-5">
+
+                    <p class="font-semibold text-red-700">
+                      Cancel Appointment
+                    </p>
+
+                    <p class="text-sm text-slate-500 mt-2">
+                      Use this when the appointment will no longer take place.
+                      The dentist's time slot becomes available again.
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- Billing -->
+
+          <section id="billing"
+                   class="bg-white border border-slate-200 rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-11 h-11 flex-shrink-0 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
+                5
+              </div>
+
+
+              <div class="flex-1">
+
+                <h3 class="text-xl font-semibold text-slate-900">
+                  Generate & Print a Bill
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1 mb-5">
+                  Calculate the patient's treatment charges and produce a receipt.
+                </p>
+
+
+                <ol class="space-y-3 text-slate-700">
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">01</span>
+                    Search for the patient's appointment.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">02</span>
+                    Open the appointment details.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">03</span>
+                    Click <strong>Generate Bill</strong>.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">04</span>
+                    Review the treatment fee, consultation fee and total amount.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">05</span>
+                    Click <strong>Print Receipt</strong> to print the bill.
+                  </li>
+
+                </ol>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- Reports -->
+
+          <section id="reports"
+                   class="bg-white border border-slate-200 rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-11 h-11 flex-shrink-0 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold">
+                6
+              </div>
+
+
+              <div class="flex-1">
+
+                <h3 class="text-xl font-semibold text-slate-900">
+                  View Reports
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1 mb-5">
+                  Monitor daily appointments and clinic revenue.
+                </p>
+
+
+                <ol class="space-y-3 text-slate-700">
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">01</span>
+                    Select <strong>Reports</strong> from the navigation menu.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">02</span>
+                    Review today's revenue, total revenue and generated bills.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">03</span>
+                    Review the daily appointment schedule.
+                  </li>
+
+                  <li class="flex gap-3">
+                    <span class="font-semibold text-slate-400">04</span>
+                    Use <strong>Print Report</strong> when a printed copy is required.
+                  </li>
+
+                </ol>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- Logout -->
+
+          <section class="bg-white border border-slate-200 rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-11 h-11 flex-shrink-0 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                7
+              </div>
+
+
+              <div class="flex-1">
+
+                <h3 class="text-xl font-semibold text-slate-900">
+                  Sign Out Safely
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1">
+
+                  When you finish using the system, select
+                  <strong>Sign Out</strong>. Your session will be closed
+                  and the application will return to the login page.
+
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- Validation -->
+
+          <section class="bg-slate-900 text-white rounded-3xl shadow-soft p-6 sm:p-8">
+
+            <h3 class="text-xl font-semibold">
+              Important Validation Rules
+            </h3>
+
+            <p class="text-sm text-slate-400 mt-2 mb-6">
+              Keep these rules in mind when entering clinic information.
+            </p>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+                <p class="text-sm text-slate-300">
+                  All required fields must be completed.
+                </p>
+              </div>
+
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+                <p class="text-sm text-slate-300">
+                  Patient contact numbers must contain 10 digits.
+                </p>
+              </div>
+
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+                <p class="text-sm text-slate-300">
+                  Past appointment dates are not accepted.
+                </p>
+              </div>
+
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+                <p class="text-sm text-slate-300">
+                  The same dentist cannot have two active bookings at the same date and time.
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+
+        <footer class="py-10">
+
+          <p class="text-center text-sm text-slate-400">
+            Sunrise Dental Clinic • Staff Help Center
+          </p>
+
+        </footer>
+
+
+      </div>
+
+    </main>
 
   </div>
 
-</main>
+</div>
 
 </body>
+
 </html>
