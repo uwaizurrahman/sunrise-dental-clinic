@@ -27,21 +27,38 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          boxShadow: {
+            soft: '0 12px 35px rgba(15, 23, 42, 0.07)'
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
 
     @media print {
-
-      .no-print {
-        display: none !important;
-      }
 
       body {
         background: white !important;
       }
 
-      .receipt {
+      .no-print {
+        display: none !important;
+      }
+
+      .print-wrapper {
+        padding: 0 !important;
+      }
+
+      .receipt-card {
         box-shadow: none !important;
         border: none !important;
+        border-radius: 0 !important;
       }
     }
 
@@ -49,223 +66,459 @@
 
 </head>
 
+<body class="bg-slate-50 text-slate-800 min-h-screen">
 
-<body class="bg-slate-100 min-h-screen">
-
-<div class="max-w-3xl mx-auto p-6">
+<div class="min-h-screen lg:flex">
 
 
-  <% if (error != null) { %>
+  <!-- Sidebar -->
 
-  <div class="bg-white rounded-xl shadow-sm p-6">
+  <aside class="hidden lg:flex lg:w-72 lg:flex-col bg-slate-950 text-white fixed inset-y-0 left-0 no-print">
 
-    <div class="bg-red-100 text-red-700 px-4 py-3 rounded-lg">
-      <%= error %>
+    <div class="px-7 py-7 border-b border-slate-800">
+
+      <div class="flex items-center gap-3">
+
+        <div class="w-11 h-11 rounded-xl bg-cyan-500 flex items-center justify-center font-bold text-lg">
+          S
+        </div>
+
+        <div>
+
+          <h1 class="font-bold text-lg">
+            Sunrise Dental
+          </h1>
+
+          <p class="text-xs text-slate-400 mt-1">
+            Clinic Management
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="mt-5">
+
+    <nav class="flex-1 px-4 py-6 space-y-2">
+
+      <a href="<%= request.getContextPath() %>/dashboard"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+
+        Dashboard
+
+      </a>
+
+      <a href="<%= request.getContextPath() %>/appointments/new"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+
+        New Appointment
+
+      </a>
 
       <a href="<%= request.getContextPath() %>/appointments/search"
-         class="text-blue-600 hover:underline">
-        Back to Appointments
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+
+        Search Appointments
+
+      </a>
+
+      <a href="<%= request.getContextPath() %>/reports"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+
+        Reports
+
+      </a>
+
+      <a href="<%= request.getContextPath() %>/help"
+         class="flex items-center gap-3 text-slate-300 hover:text-white hover:bg-slate-800 px-4 py-3 rounded-xl transition">
+
+        Help & Support
+
+      </a>
+
+    </nav>
+
+
+    <div class="p-4 border-t border-slate-800">
+
+      <a href="<%= request.getContextPath() %>/logout"
+         class="block text-center bg-slate-900 hover:bg-red-500/20 hover:text-red-300 px-4 py-3 rounded-xl transition">
+
+        Sign Out
+
       </a>
 
     </div>
 
-  </div>
-
-  <% } else if (bill != null && appointment != null) { %>
+  </aside>
 
 
-  <div class="no-print flex justify-between items-center mb-5">
+  <!-- Main -->
 
-    <a href="<%= request.getContextPath() %>/appointments/view?id=<%= appointment.getAppointmentId() %>"
-       class="text-blue-600 hover:underline">
+  <div class="flex-1 lg:ml-72 print-wrapper">
 
-      Back to Appointment
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200 no-print">
 
-    </a>
+      <div class="px-5 sm:px-8 py-4 flex items-center justify-between">
 
-    <button onclick="window.print()"
-            class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+        <div>
 
-      Print Bill
+          <p class="text-sm text-slate-500">
+            Billing
+          </p>
 
-    </button>
+          <h2 class="text-xl font-bold text-slate-900">
+            Patient Receipt
+          </h2>
 
-  </div>
-
-
-  <div class="receipt bg-white rounded-xl shadow-sm p-8">
-
-    <div class="text-center border-b border-slate-200 pb-6">
-
-      <h1 class="text-3xl font-bold text-slate-800">
-        Sunrise Dental Clinic
-      </h1>
-
-      <p class="text-slate-500 mt-2">
-        Colombo
-      </p>
-
-      <h2 class="text-xl font-semibold text-slate-700 mt-4">
-        Patient Receipt
-      </h2>
-
-    </div>
+        </div>
 
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-6">
+        <% if (appointment != null) { %>
 
-      <div>
+        <a href="<%= request.getContextPath() %>/appointments/view?id=<%= appointment.getAppointmentId() %>"
+           class="text-sm font-medium text-slate-600 hover:text-slate-900">
 
-        <p class="text-sm text-slate-500">
-          Bill Number
-        </p>
+          Back to Appointment
 
-        <p class="font-semibold text-slate-800">
-          BILL-<%= bill.getBillId() %>
-        </p>
+        </a>
+
+        <% } %>
 
       </div>
 
-      <div>
-
-        <p class="text-sm text-slate-500">
-          Appointment Number
-        </p>
-
-        <p class="font-semibold text-slate-800">
-          <%= appointment.getAppointmentNumber() %>
-        </p>
-
-      </div>
-
-      <div>
-
-        <p class="text-sm text-slate-500">
-          Patient Name
-        </p>
-
-        <p class="font-semibold text-slate-800">
-          <%= appointment.getPatientName() %>
-        </p>
-
-      </div>
-
-      <div>
-
-        <p class="text-sm text-slate-500">
-          Contact Number
-        </p>
-
-        <p class="font-semibold text-slate-800">
-          <%= appointment.getContactNumber() %>
-        </p>
-
-      </div>
-
-      <div>
-
-        <p class="text-sm text-slate-500">
-          Dentist
-        </p>
-
-        <p class="font-semibold text-slate-800">
-          <%= appointment.getDentistName() %>
-        </p>
-
-      </div>
-
-      <div>
-
-        <p class="text-sm text-slate-500">
-          Date / Time
-        </p>
-
-        <p class="font-semibold text-slate-800">
-          <%= appointment.getAppointmentDate() %>
-          -
-          <%= appointment.getAppointmentTime() %>
-        </p>
-
-      </div>
-
-    </div>
+    </header>
 
 
-    <div class="border-t border-slate-200 pt-6">
+    <main class="p-5 sm:p-8">
 
-      <h3 class="text-lg font-semibold text-slate-800 mb-4">
-        Billing Summary
-      </h3>
+      <div class="max-w-4xl mx-auto">
 
 
-      <div class="space-y-4">
+        <% if (error != null) { %>
 
-        <div class="flex justify-between">
+        <section class="bg-white border border-red-200 rounded-3xl shadow-soft p-8">
 
-          <div>
+          <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-5">
 
-            <p class="font-medium text-slate-800">
-              <%= appointment.getTreatmentName() %>
-            </p>
-
-            <p class="text-sm text-slate-500">
-              Treatment Fee
-            </p>
+            !
 
           </div>
 
-          <p class="font-medium text-slate-800">
-            Rs. <%= bill.getTreatmentCost() %>
+          <h1 class="text-2xl font-bold text-slate-900">
+            Unable to generate bill
+          </h1>
+
+          <p class="text-red-600 mt-3">
+            <%= error %>
           </p>
+
+          <a href="<%= request.getContextPath() %>/appointments/search"
+             class="inline-flex mt-6 bg-slate-950 hover:bg-slate-800 text-white px-5 py-3 rounded-xl font-semibold transition">
+
+            Back to Appointments
+
+          </a>
+
+        </section>
+
+        <% } else if (bill != null && appointment != null) { %>
+
+
+        <!-- Actions -->
+
+        <div class="no-print flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+
+          <div>
+
+            <p class="text-sm text-slate-500">
+              Bill generated successfully
+            </p>
+
+            <h1 class="text-2xl font-bold text-slate-900 mt-1">
+              BILL-<%= bill.getBillId() %>
+            </h1>
+
+          </div>
+
+
+          <div class="flex flex-wrap gap-3">
+
+            <a href="<%= request.getContextPath() %>/appointments/view?id=<%= appointment.getAppointmentId() %>"
+               class="px-5 py-3 border border-slate-300 text-slate-700 rounded-xl font-semibold hover:bg-slate-50 transition">
+
+              Back
+
+            </a>
+
+            <button onclick="window.print()"
+                    class="px-6 py-3 bg-slate-950 hover:bg-slate-800 text-white rounded-xl font-semibold shadow-lg shadow-slate-900/10 transition">
+
+              Print Receipt
+
+            </button>
+
+          </div>
 
         </div>
 
 
-        <div class="flex justify-between">
+        <!-- Receipt -->
 
-          <p class="text-slate-700">
-            Consultation Fee
-          </p>
-
-          <p class="font-medium text-slate-800">
-            Rs. <%= bill.getConsultationFee() %>
-          </p>
-
-        </div>
+        <section class="receipt-card bg-white border border-slate-200 rounded-3xl shadow-soft overflow-hidden">
 
 
-        <div class="border-t border-slate-300 pt-4 flex justify-between">
+          <!-- Receipt Header -->
 
-          <p class="text-xl font-bold text-slate-800">
-            Total
-          </p>
+          <div class="bg-slate-950 text-white px-7 sm:px-10 py-8">
 
-          <p class="text-xl font-bold text-slate-800">
-            Rs. <%= bill.getTotalAmount() %>
-          </p>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
 
-        </div>
+              <div class="flex items-center gap-4">
+
+                <div class="w-14 h-14 rounded-2xl bg-cyan-500 text-slate-950 flex items-center justify-center font-bold text-xl">
+
+                  S
+
+                </div>
+
+                <div>
+
+                  <h1 class="text-2xl font-bold">
+                    Sunrise Dental Clinic
+                  </h1>
+
+                  <p class="text-sm text-slate-400 mt-1">
+                    Colombo, Sri Lanka
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="sm:text-right">
+
+                <p class="text-xs uppercase tracking-wider text-slate-400">
+                  Receipt
+                </p>
+
+                <p class="text-xl font-bold mt-1">
+                  BILL-<%= bill.getBillId() %>
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Details -->
+
+          <div class="p-7 sm:p-10">
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-8 border-b border-slate-200">
+
+
+              <div>
+
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Appointment Number
+                </p>
+
+                <p class="font-semibold text-slate-900 mt-1">
+                  <%= appointment.getAppointmentNumber() %>
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Bill Date
+                </p>
+
+                <p class="font-semibold text-slate-900 mt-1">
+
+                  <%= bill.getBillDate() != null
+                          ? bill.getBillDate()
+                          : "-" %>
+
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Patient
+                </p>
+
+                <p class="font-semibold text-slate-900 mt-1">
+                  <%= appointment.getPatientName() %>
+                </p>
+
+                <p class="text-sm text-slate-500 mt-1">
+                  <%= appointment.getContactNumber() %>
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Dentist
+                </p>
+
+                <p class="font-semibold text-slate-900 mt-1">
+                  <%= appointment.getDentistName() %>
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Appointment Date
+                </p>
+
+                <p class="font-semibold text-slate-900 mt-1">
+                  <%= appointment.getAppointmentDate() %>
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Appointment Time
+                </p>
+
+                <p class="font-semibold text-slate-900 mt-1">
+                  <%= appointment.getAppointmentTime() %>
+                </p>
+
+              </div>
+
+
+            </div>
+
+
+            <!-- Charges -->
+
+            <div class="pt-8">
+
+              <h2 class="text-xl font-bold text-slate-900">
+                Billing Summary
+              </h2>
+
+              <p class="text-sm text-slate-500 mt-1">
+                Treatment and consultation charges
+              </p>
+
+
+              <div class="mt-6 border border-slate-200 rounded-2xl overflow-hidden">
+
+
+                <div class="flex items-center justify-between gap-6 px-5 py-5 border-b border-slate-200">
+
+                  <div>
+
+                    <p class="font-semibold text-slate-900">
+                      <%= appointment.getTreatmentName() %>
+                    </p>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                      Treatment fee
+                    </p>
+
+                  </div>
+
+                  <p class="font-semibold text-slate-900 whitespace-nowrap">
+                    Rs. <%= bill.getTreatmentCost() %>
+                  </p>
+
+                </div>
+
+
+                <div class="flex items-center justify-between gap-6 px-5 py-5 border-b border-slate-200">
+
+                  <div>
+
+                    <p class="font-medium text-slate-800">
+                      Consultation Fee
+                    </p>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                      Standard clinic consultation
+                    </p>
+
+                  </div>
+
+                  <p class="font-semibold text-slate-900 whitespace-nowrap">
+                    Rs. <%= bill.getConsultationFee() %>
+                  </p>
+
+                </div>
+
+
+                <div class="flex items-center justify-between gap-6 px-5 py-6 bg-slate-50">
+
+                  <div>
+
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider">
+                      Total Amount
+                    </p>
+
+                  </div>
+
+                  <p class="text-2xl font-bold text-slate-950 whitespace-nowrap">
+                    Rs. <%= bill.getTotalAmount() %>
+                  </p>
+
+                </div>
+
+
+              </div>
+
+            </div>
+
+
+            <!-- Footer -->
+
+            <div class="mt-10 pt-7 border-t border-slate-200 text-center">
+
+              <p class="font-semibold text-slate-800">
+                Thank you for visiting Sunrise Dental Clinic
+              </p>
+
+              <p class="text-sm text-slate-500 mt-2">
+                Please keep this receipt for your records.
+              </p>
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+        <% } %>
 
       </div>
 
-    </div>
-
-
-    <div class="border-t border-slate-200 mt-8 pt-6 text-center">
-
-      <p class="text-slate-600">
-        Thank you for visiting Sunrise Dental Clinic.
-      </p>
-
-    </div>
+    </main>
 
   </div>
-
-
-  <% } %>
 
 </div>
 
